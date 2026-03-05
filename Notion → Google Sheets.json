@@ -1,0 +1,148 @@
+{
+  "name": "Notion → Google Sheets",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "databaseId": {
+          "__rl": true,
+          "value": "31ac067b-f8cc-80d1-a6f5-ff85b8e328b3",
+          "mode": "list",
+          "cachedResultName": "Task Tracker",
+          "cachedResultUrl": "https://www.notion.so/31ac067bf8cc80d1a6f5ff85b8e328b3"
+        }
+      },
+      "type": "n8n-nodes-base.notionTrigger",
+      "typeVersion": 1,
+      "position": [
+        -464,
+        -128
+      ],
+      "id": "e15c314a-2e77-4335-82a0-388107aaa3d7",
+      "name": "Notion Trigger",
+      "credentials": {
+        "notionApi": {
+          "id": "1sJaDVwO2yiFYFYo",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1X8TxXcJ89VxydZ274-j4vcjN7HQs0qXWG6RRB7oLF-E",
+          "mode": "list",
+          "cachedResultName": "Notion Task Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1X8TxXcJ89VxydZ274-j4vcjN7HQs0qXWG6RRB7oLF-E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1X8TxXcJ89VxydZ274-j4vcjN7HQs0qXWG6RRB7oLF-E/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Due Date": "={{ $json['Due Date'].start }}",
+            "Assigned To": "={{ $json['Assigned To'] }}",
+            "Status": "={{ $json.Status }}",
+            "Task Name": "={{ $json.Name }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Task Name",
+              "displayName": "Task Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Due Date",
+              "displayName": "Due Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Assigned To",
+              "displayName": "Assigned To",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -256,
+        -128
+      ],
+      "id": "743a4380-8cb8-47df-a159-afb0548e0bf5",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "pXQib6XFaKKgc7j2",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Notion Trigger": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "de14c9c3-647a-40f3-aad3-757a6c20e61f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7fb9c15a60f56efb2ed4242be9731d3ca6085debc8b55380dea54cf9f42b047d"
+  },
+  "id": "zziaI5pJ3FsUZy2P",
+  "tags": []
+}
